@@ -94,10 +94,10 @@ export default function Form() {
                   name='year'
                   onChange={handleNumber}
                   value={additonalDetails.year}
-                  className=' bg-white pl-5 border border-gray-300  outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white' />
+                  className=' bg-white pl-5 border border-gray-300  outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400' />
 
 
-                <select name='month' onChange={(e) => { setAdditionalDetails({ ...additonalDetails, month: e.target.value }) }} defaultValue={additonalDetails.month} className="bg-white border mb-1  pl-6 pb-2 h-10 border-gray-300   outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white  ">
+                <select name='month' onChange={(e) => { setAdditionalDetails({ ...additonalDetails, month: e.target.value }) }} defaultValue={additonalDetails.month} className="bg-white border mb-1  pl-6 pb-2 h-10 border-gray-300   outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400   ">
                   {years.map((item, index) => {
                     return <option key={index} className='capitalize' value={item}>{item}</option>
 
@@ -110,7 +110,7 @@ export default function Form() {
                   id='Day'
                   name='date'
                   onChange={handleNumber}
-                  className=' bg-white border border-gray-300   outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white'
+                  className=' bg-white border border-gray-300   outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 '
                   value={additonalDetails.date} />
 
 
@@ -151,7 +151,7 @@ export default function Form() {
         </div>
 
         <div className="mt-5 flex justify-center space-x-6">
-          <button className="rounded-full bg-green-500 mt-2 px-12 py-3 text-base font-bold  transition duration-200 hover:bg-green-600 active:bg-green-700 dark:bg-green-400 dark:text-white dark:hover:bg-green-300 dark:active:bg-green-200 hover:px-11 "
+          <button className="rounded-full bg-green-500 mt-2 px-12 py-3 text-base font-bold  transition duration-200 hover:bg-green-600 active:bg-green-700 dark:bg-green-400  dark:hover:bg-green-300 dark:active:bg-green-200 hover:px-11 "
             type="submit" onClick={handleSubmit}>
             Sign Up
           </button>
