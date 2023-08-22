@@ -1,0 +1,12 @@
+#modules
+Client/node_modules
+BackEnd/node_modules
+
+#env
+
+Client/.env
+BackEnd/.env
+
+#Build
+Client/Build
+
