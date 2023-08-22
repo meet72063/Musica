@@ -12,7 +12,7 @@ const DeletePlaylistModal = ({ setLoading, refresh, setRefresh, setDeletModal, i
 
       setDeletModal(false)
       setLoading(true)
-      const response = await axios.delete(`${process.env.SERVER_URL}/deleteplaylist/${id}`, {
+      const response = await axios.delete(`https://musica-8uoh.onrender.com/deleteplaylist/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
