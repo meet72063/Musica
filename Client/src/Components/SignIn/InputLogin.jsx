@@ -22,7 +22,7 @@ export default function InputLogin() {
     e.preventDefault()
 
     try {
-      const response = await axios.post(`${process.env.SERVER_URL}/login`, userDetails)
+      const response = await axios.post(`https://musica-8uoh.onrender.com/login`, userDetails)
       const { data, token } = response.data
       dispatch(storeUserDetails(data))
       dispatch(setToken(token))

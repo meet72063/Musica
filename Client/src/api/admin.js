@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = process.env.SERVER_URL;
+const baseUrl = "https://musica-8uoh.onrender.com";
 
 export const saveSong = async (data, token) => {
   const res = await axios.post(`${baseUrl}/songs/addSong`, data, {

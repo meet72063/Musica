@@ -33,7 +33,7 @@ const PlaylistCard = ({ name, _id, songs, refresh, setRefresh }) => {
             //adding song to playlist on database
             const addSongToPlaylist = async () => {
                 try {
-                    const res = await axios.patch(`${process.env.SERVER_URL}/addSongToPlaylist/${_id}`, songTobeAdded, {
+                    const res = await axios.patch(`https://musica-8uoh.onrender.com/addSongToPlaylist/${_id}`, songTobeAdded, {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }

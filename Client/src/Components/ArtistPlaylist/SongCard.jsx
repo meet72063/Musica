@@ -107,7 +107,7 @@ const Options = ({ url, _id, img, artist, name, playlistId, setOptions }) => {
   //removing song from playlist
   const removeSongHandler = async () => {
     try {
-      const res = await axios.patch(`${process.env.SERVER_URL}/delteSongFromPlaylist/${playlistId}`, { songId: _id }, {
+      const res = await axios.patch(`https://musica-8uoh.onrender.com/delteSongFromPlaylist/${playlistId}`, { songId: _id }, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

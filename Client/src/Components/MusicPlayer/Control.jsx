@@ -63,7 +63,7 @@ const Control = ({ isPlaying, audioRef, setProgressValue, progressRef, duration,
 
         try {
 
-          const res = await axios.patch(`${process.env.SERVER_URL}/favouriteSongs`, userDetails.likedSongs, {
+          const res = await axios.patch(`https://musica-8uoh.onrender.com/favouriteSongs`, userDetails.likedSongs, {
             headers: {
               'Authorization': `Bearer ${token}`
             }

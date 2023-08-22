@@ -32,7 +32,7 @@ const Playlists = () => {
   useEffect(() => {
     const gettingPlaylists = async () => {
       try {
-        const res = await axios.get(`${process.env.SERVER_URL}/getallplaylists`, {
+        const res = await axios.get(`https://musica-8uoh.onrender.com/getallplaylists`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

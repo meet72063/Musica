@@ -28,7 +28,7 @@ export default function InputField() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post(`${process.env.SERVER_URL}/signUp`, userDetails)
+      const response = await axios.post(`https://musica-8uoh.onrender.com/signUp`, userDetails)
       dispatch(setToken(response.data.token))
 
       navigate('/almostDone')

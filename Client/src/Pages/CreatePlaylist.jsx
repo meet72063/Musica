@@ -42,7 +42,7 @@ const CreatePlaylist = () => {
     let data = { name: playlistInfo.name, description: playlistInfo.description, songs: createPlaylist }
     try {
       setLoading(true)
-      const res = await axios.post(`${process.env.SERVER_URL}/newplaylist`, data, {
+      const res = await axios.post(`https://musica-8uoh.onrender.com/newplaylist`, data, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

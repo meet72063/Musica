@@ -46,7 +46,7 @@ export default function Form() {
 
     try {
 
-      const res = await axios.patch(`${process.env.SERVER_URL}/update`, additonalDetails, {
+      const res = await axios.patch(`https://musica-8uoh.onrender.com/update`, additonalDetails, {
         headers: {
           'content-type': 'application/json',
           'Authorization': `Bearer ${token}`
