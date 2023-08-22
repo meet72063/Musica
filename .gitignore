@@ -4,7 +4,6 @@ BackEnd/node_modules
 
 #env
 
-Client/.env
 BackEnd/.env
 
 #Build
