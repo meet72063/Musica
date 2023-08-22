@@ -6,7 +6,7 @@
   "scripts": {
     "install-server": "cd BackEnd && npm install",
     "start-server": "cd BackEnd && node server.js",
-    "install-client": "cd client && npm install",
+    "install-client": "cd Client && npm install",
     "build-client": "cd Client && npm run build",
     "start-client": "cd Client && npm run dev"
   },
