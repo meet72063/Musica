@@ -28,7 +28,7 @@ const SideBar = () => {
     }
     const gettingPlaylists = async () => {
       try {
-        const res = await axios.get(`${process.env.SERVER_URL}/getallplaylists`, {
+        const res = await axios.get(`https://musica-8uoh.onrender.com/getallplaylists`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -64,6 +64,7 @@ const SideBar = () => {
 
 
   if (error) {
+
     return <div className={`fixed overflow-scroll pb-40 top-0 grid place-content-center z-20 right-0 h-screen bg-blue-400 md:w-[60vw]  w-[70vw] transition-all ease-in-out ${openSideBar ? "translate-x-0" : "translate-x-full"} duration-1000 `}>
       <div className='fixed top-3 right-3 md:right-8 text-xl  md:text-2xl'><FontAwesomeIcon icon={faClose} onClick={() => dispatch(setSideBar(false))} className='cursor-pointer' /></div>
 

@@ -96,7 +96,7 @@ const Options = ({ url, _id, img, artist, name, playlistId, setOptions }) => {
   }, [page])
 
   const addToPlaylistHandler = () => {
-    if (!userDetails) {
+    if (!token) {
       dispatch(setLoginModal(true))
       return
     }

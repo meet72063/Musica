@@ -7,5 +7,5 @@ BackEnd/node_modules
 BackEnd/.env
 
 #Build
-Client/Build
+Client/dist
 

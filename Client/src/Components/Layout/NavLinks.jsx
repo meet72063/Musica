@@ -26,7 +26,7 @@ const NavLinks = () => {
   }
 
   const navigation = (e) => {
-    console.log(token)
+
     if (!token) {
       e.preventDefault()
       dispatch(setLoginModal(true))

@@ -64,7 +64,7 @@ const EditProfile = ({ setEditProfile }) => {
 
     return (
         <div className=''>
-            <h1 className='font-semibold text-4xl sm:text-6xl '>Edit profile</h1>
+            <h1 className='font-semibold 4xl sm:text-6xl '>Edit profile</h1>
             <form action="" className='mt-10 space-y-6'>
                 <div className='space-y-2'>
                     <div className='flex space-x-10'>
@@ -83,7 +83,7 @@ const EditProfile = ({ setEditProfile }) => {
 
                 <div className='space-y-2'>
                     <label htmlFor="gender" className='font-semibold'>Gender</label>
-                    <select id="gender" name='gender' onChange={handleChange} className="bg-white border border-gray-300 text-gray-900 outline-gray-500 text-sm font-semibold rounded-lg   w-full p-2.5   dark:placeholder-gray-400 dark:text-white  " defaultValue={gender} >
+                    <select id="gender" name='gender' onChange={handleChange} className="bg-white border border-gray-300 text-black outline-gray-500 text-sm font-semibold rounded-lg   w-full p-2.5   dark:placeholder-gray-400 dark:text-white  " defaultValue={gender} >
                         <option value={userDetails.gender} className='capitalize' >{userDetails.gender}</option>
                         <option value="female" >Female</option>
                         <option value="Male">Male</option>
@@ -105,10 +105,10 @@ const EditProfile = ({ setEditProfile }) => {
                             name='year'
                             onChange={handleNumber}
                             value={userDetails.year}
-                            className=' bg-white text-center border-gray-300 text-gray-900 outline-gray-500 text-sm font-semibold rounded-lg    w-full   dark:placeholder-gray-400 dark:text-white' />
+                            className=' bg-white text-center border-gray-300 text-black outline-gray-500 text-sm font-semibold rounded-lg    w-full   dark:placeholder-gray-400 dark:text-white' />
 
 
-                        <select id="month" name='month' defaultValue={month} className="bg-white border h-10  overflow-y-scroll border-gray-300  text-gray-900 outline-gray-500 text-sm font-semibold rounded-lg   block w-full text-center  dark:placeholder-gray-400 dark:text-white " onChange={handleChange}>
+                        <select id="month" name='month' defaultValue={month} className="bg-white border h-10  overflow-y-scroll border-gray-300  text-black outline-gray-500 text-sm font-semibold rounded-lg   block w-full text-center  dark:placeholder-gray-400 dark:text-white " onChange={handleChange}>
                             <option value={month} className='capitalize'>{month}</option>
                             {years.map((item, index) => {
                                 if (item !== month) return <option key={index} className='capitalize px-5' value={item} >{item}</option>
@@ -122,7 +122,7 @@ const EditProfile = ({ setEditProfile }) => {
                             id='Day'
                             name='date'
                             onChange={handleNumber}
-                            className=' bg-white border border-gray-300  text-center text-gray-900 outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white'
+                            className=' bg-white border border-gray-300  text-center text-black outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white'
                             value={userDetails.date} />
 
 
@@ -130,7 +130,7 @@ const EditProfile = ({ setEditProfile }) => {
 
                     <div className='space-y-2'>
                         <label htmlFor="country" className='font-semibold'>Country</label>
-                        <select name='country' id="country" onChange={handleChange} className="bg-white border border-gray-300 text-gray-900 outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white  " defaultValue={country} >
+                        <select name='country' id="country" onChange={handleChange} className="bg-white border border-gray-300 text-black outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white  " defaultValue={country} >
                             <option value={userDetails.country}  >{userDetails.country}</option>
                             <option value="US">US</option>
                             <option value="England">England</option>

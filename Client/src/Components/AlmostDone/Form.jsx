@@ -94,10 +94,10 @@ export default function Form() {
                   name='year'
                   onChange={handleNumber}
                   value={additonalDetails.year}
-                  className=' bg-white pl-5 border border-gray-300 text-gray-900 outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white' />
+                  className=' bg-white pl-5 border border-gray-300 text-black outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white' />
 
 
-                <select name='month' onChange={(e) => { setAdditionalDetails({ ...additonalDetails, month: e.target.value }) }} defaultValue={additonalDetails.month} className="bg-white border mb-1  pl-6 pb-2 h-10 border-gray-300  text-gray-900 outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white  ">
+                <select name='month' onChange={(e) => { setAdditionalDetails({ ...additonalDetails, month: e.target.value }) }} defaultValue={additonalDetails.month} className="bg-white border mb-1  pl-6 pb-2 h-10 border-gray-300  text-black outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white  ">
                   {years.map((item, index) => {
                     return <option key={index} className='capitalize' value={item}>{item}</option>
 
@@ -110,7 +110,7 @@ export default function Form() {
                   id='Day'
                   name='date'
                   onChange={handleNumber}
-                  className=' bg-white border border-gray-300 pl- 5text-gray-900 outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white'
+                  className=' bg-white border border-gray-300  text-black outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white'
                   value={additonalDetails.date} />
 
 
@@ -125,7 +125,7 @@ export default function Form() {
                 <h2 color="gray" className="mb-2  font-bold">
                   What's is your gender?
                 </h2>
-                <div className="flex space-x-3 ml-2">
+                <div className="flex space-x-3 ml-2 text-black">
 
 
                   <label htmlFor="Male">Male</label>
