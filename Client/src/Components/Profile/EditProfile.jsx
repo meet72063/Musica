@@ -83,7 +83,7 @@ const EditProfile = ({ setEditProfile }) => {
 
                 <div className='space-y-2'>
                     <label htmlFor="gender" className='font-semibold'>Gender</label>
-                    <select id="gender" name='gender' onChange={handleChange} className="bg-white border border-gray-300  outline-gray-500 text-sm font-semibold rounded-lg   w-full p-2.5   dark:placeholder-gray-400 dark:text-white  " defaultValue={gender} >
+                    <select id="gender" name='gender' onChange={handleChange} className="bg-white border border-gray-300  outline-gray-500 text-sm font-semibold rounded-lg   w-full p-2.5   dark:placeholder-gray-400   " defaultValue={gender} >
                         <option value={userDetails.gender} className='capitalize' >{userDetails.gender}</option>
                         <option value="female" >Female</option>
                         <option value="Male">Male</option>
@@ -105,10 +105,10 @@ const EditProfile = ({ setEditProfile }) => {
                             name='year'
                             onChange={handleNumber}
                             value={userDetails.year}
-                            className=' bg-white text-center border-gray-300  outline-gray-500 text-sm font-semibold rounded-lg    w-full   dark:placeholder-gray-400 dark:text-white' />
+                            className=' bg-white text-center border-gray-300  outline-gray-500 text-sm font-semibold rounded-lg    w-full   dark:placeholder-gray-400 ' />
 
 
-                        <select id="month" name='month' defaultValue={month} className="bg-white border h-10  overflow-y-scroll border-gray-300   outline-gray-500 text-sm font-semibold rounded-lg   block w-full text-center  dark:placeholder-gray-400 dark:text-white " onChange={handleChange}>
+                        <select id="month" name='month' defaultValue={month} className="bg-white border h-10  overflow-y-scroll border-gray-300   outline-gray-500 text-sm font-semibold rounded-lg   block w-full text-center  dark:placeholder-gray-400  " onChange={handleChange}>
                             <option value={month} className='capitalize'>{month}</option>
                             {years.map((item, index) => {
                                 if (item !== month) return <option key={index} className='capitalize px-5' value={item} >{item}</option>
@@ -122,7 +122,7 @@ const EditProfile = ({ setEditProfile }) => {
                             id='Day'
                             name='date'
                             onChange={handleNumber}
-                            className=' bg-white border border-gray-300  text-center  outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white'
+                            className=' bg-white border border-gray-300  text-center  outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 '
                             value={userDetails.date} />
 
 
@@ -130,7 +130,7 @@ const EditProfile = ({ setEditProfile }) => {
 
                     <div className='space-y-2'>
                         <label htmlFor="country" className='font-semibold'>Country</label>
-                        <select name='country' id="country" onChange={handleChange} className="bg-white border border-gray-300  outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400 dark:text-white  " defaultValue={country} >
+                        <select name='country' id="country" onChange={handleChange} className="bg-white border border-gray-300  outline-gray-500 text-sm font-semibold rounded-lg   block w-full p-2.5   dark:placeholder-gray-400   " defaultValue={country} >
                             <option value={userDetails.country}  >{userDetails.country}</option>
                             <option value="US">US</option>
                             <option value="England">England</option>
@@ -140,11 +140,11 @@ const EditProfile = ({ setEditProfile }) => {
                     </div>
 
                     <div className='flex justify-end space-x-3'>
-                        <button className="rounded-full bg-transparent px-10 mt-5  py-3 text-base font-bold  transition duration-200 hover:bg-gray-100 active:outline-1 active:outline-black  dark:text-white dark:hover:bg-green-300  "
+                        <button className="rounded-full bg-transparent px-10 mt-5  py-3 text-base font-bold  transition duration-200 hover:bg-gray-100 active:outline-1 active:outline-black   dark:hover:bg-green-300  "
                             type='button' onClick={() => setEditProfile(false)}>
                             cancel
                         </button>
-                        <button className="rounded-full bg-green-400 px-10 mt-5  py-3 text-base font-bold  transition duration-200 hover:bg-green-600 active:bg-green-700 dark:bg-green-400 dark:text-white dark:hover:bg-green-300 dark:active:bg-green-200 hover:px-11 "
+                        <button className="rounded-full bg-green-400 px-10 mt-5  py-3 text-base font-bold  transition duration-200 hover:bg-green-600 active:bg-green-700 dark:bg-green-400  dark:hover:bg-green-300 dark:active:bg-green-200 hover:px-11 "
                             type="submit" onClick={handleSubmit}>
                             Save
                         </button>
