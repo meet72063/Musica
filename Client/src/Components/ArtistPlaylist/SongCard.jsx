@@ -51,25 +51,27 @@ const SongCard = ({ name, url, albums, _id, artist, img, playlistId }) => {
 
   return (
     <div>
-      <div className='bg-red-300 h-14  sm:w-[80%] sm:mr-8 rounded-md pl-5 group ralative ' onMouseLeave={() => setOptions(false)}>
-        <div className='flex items-center justify-between '>
+      <div className='bg-red-300 h-14  sm:w-[80%] sm:mr-8 rounded-md pl-5 pr-2 group ralative gap-3 flex justify-between' onMouseLeave={() => setOptions(false)}>
+
+
+        <div className=' flex gap-5  md:gap-10 items-center'>
           <img src={img || "/musicwheel.png"} alt="Cover" className=' h-10 w-10  pt-1 rounded-lg pr-1' />
 
           <h1 className=' xs:text-sm xs:text-black   sm:text-2xl font-extralight mr-2 text-black'>{name}</h1>
           <h1 className='  text-rose-900 font-thin tracking-wider xs:text-sm sm:text-lg'>{artist}</h1>
 
 
-          <div className='pr-4 flex gap-2 sm:gap-5 '>
-            <button onClick={handlePlaying}>{playing ? <PauseSharp /> : <PlayArrowSharp />}</button>
-            <button className='text-black invisible group-hover:visible relative  ' >
-              <FontAwesomeIcon icon={faEllipsisVertical} onClick={() => setOptions(!options)} />
-              {options && <Options {...{ name, url, img, _id, artist, playlistId, setOptions }} />}
-            </button>
-          </div>
+
 
 
         </div>
-
+        <div className='pr-4 flex gap-2 sm:gap-5 '>
+          <button onClick={handlePlaying}>{playing ? <PauseSharp /> : <PlayArrowSharp />}</button>
+          <button className='text-black invisible group-hover:visible relative  ' >
+            <FontAwesomeIcon icon={faEllipsisVertical} onClick={() => setOptions(!options)} />
+            {options && <Options {...{ name, url, img, _id, artist, playlistId, setOptions }} />}
+          </button>
+        </div>
       </div>
     </div>
   )
@@ -96,6 +98,7 @@ const Options = ({ url, _id, img, artist, name, playlistId, setOptions }) => {
   }, [page])
 
   const addToPlaylistHandler = () => {
+
     if (!token) {
       dispatch(setLoginModal(true))
       return

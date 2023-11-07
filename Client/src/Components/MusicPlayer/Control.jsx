@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Error from '../SharedComponents/Error'
 import { faHeart, faShuffle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { addToFavouritePlaylist, removeFromFavouritePlaylist, setToken, storeUserDetails } from '../../Features/userDetailSlice'
+import { addToFavouritePlaylist, removeFromFavouritePlaylist } from '../../Features/userDetailSlice'
 import { setLoginModal, setSessionExpiredModal } from '../../Features/modalSlice'
 import axios from 'axios'
 

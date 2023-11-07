@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { DeleteForever } from '@mui/icons-material'
-import axios from 'axios'
-import { useSelector } from 'react-redux'
 
 
 const PlaylistCard = ({ name, _id, description, songs, allowDelete, setDeletModal, setId }) => {

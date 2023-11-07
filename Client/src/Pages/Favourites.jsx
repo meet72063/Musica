@@ -23,7 +23,7 @@ const Favourites = () => {
     <div className='bg-black flex gap-3  pb-1 min-h-screen pl-3 pr-3'>
       <div className=' bg-zinc-800 w-full  text-white '>
         <div className=' pr-1 grid sm:grid-cols-[160px_1fr]'>
-          <div className=' bg-zinc-900  sm:h-full border-gray-700 border-r-[0.5px]'>
+          <div className=' bg-zinc-900  sm:min-h-screen border-gray-700 border-r-[0.5px]'>
 
           </div>
           <div className=' mt-4 ml-2'>

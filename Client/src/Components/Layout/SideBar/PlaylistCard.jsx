@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CheckBox, RadioButtonUnchecked, RadioButtonChecked, LibraryAddCheck, LibraryAddOutlined } from '@mui/icons-material'
+import { LibraryAddCheck, LibraryAddOutlined } from '@mui/icons-material'
 import { useSelector } from 'react-redux'
 
 import axios from 'axios'
@@ -28,7 +28,7 @@ const PlaylistCard = ({ name, _id, songs, refresh, setRefresh }) => {
         const matchedSongArray = songs.filter((song) => song._id === songTobeAdded._id)
         if (matchedSongArray.length === 0) {
             SetCheckBox(true)
-            setRefresh(!refresh)
+
 
             //adding song to playlist on database
             const addSongToPlaylist = async () => {
@@ -38,6 +38,7 @@ const PlaylistCard = ({ name, _id, songs, refresh, setRefresh }) => {
                             'Authorization': `Bearer ${token}`
                         }
                     })
+                    setRefresh(!refresh)
                 } catch (error) {
                     console.log(error)
                 }

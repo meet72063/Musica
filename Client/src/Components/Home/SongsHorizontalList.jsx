@@ -3,40 +3,41 @@ import SongCard from './SongCard'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Error from '../SharedComponents/Error'
-import {Link} from 'react-router-dom'
 import Loading from '../SharedComponents/Loading'
-// import ArtistsIconsList from './ArtistsIconsList'
 
-const SongsHorizontalList = ({homepage}) => {
-  
-  const {allSongs,songsLoading,error} = useSelector((store)=>store.currentTrack)
- 
-  if(songsLoading ) {
-    return <Loading/>
+
+const SongsHorizontalList = ({ homepage }) => {
+
+  const { allSongs, songsLoading, error } = useSelector((store) => store.currentTrack)
+
+
+
+  if (songsLoading) {
+    return <Loading />
   }
 
   if (error) {
     return <Error error='something went wrong' />
   }
 
-  const Songs = homepage?allSongs?.slice(0,6):allSongs
-  
-  
+  const Songs = homepage ? allSongs?.slice(0, 6) : allSongs
+
+
   return (
-  
+
     <div className='  space-y-4 pl-5 md:pl-10 pr-3'>
       <div className='flex justify-between items-center xs:pr-3  '>
-      {homepage && <h1 className='sm:text-3xl xs:text-xl text-white font-thin font-Comfortaa'>Popular Around You</h1>}
+        {homepage && <h1 className='sm:text-3xl xs:text-xl text-white font-thin font-Comfortaa'>Popular Around You</h1>}
       </div>
-        <div className=' rounded-lg grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 pt-1 xs:gap-5 md: '>
-    
-      {Songs?.map((song, index) => {
-         
+      <div className=' rounded-lg grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 pt-1 xs:gap-5 md: '>
 
-        return <SongCard key={index} {...song} index={index}  />
-      })}
-   </div>
-</div>
+        {Songs?.map((song, index) => {
+
+
+          return <SongCard key={index} {...song} index={index} />
+        })}
+      </div>
+    </div>
 
   )
 }

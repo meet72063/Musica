@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { faClose, faMusic } from '@fortawesome/free-solid-svg-icons'
-import { PlaylistAdd } from '@mui/icons-material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { setSideBar } from '../../../Features/modalSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,6 +9,8 @@ import Loading from '../../SharedComponents/Loading'
 import Error from '../../SharedComponents/Error'
 import axios from 'axios'
 import NewPlaylistCard from '../../Playlist/NewPlaylistCard'
+import { setSessionExpiredModal } from '../../../Features/modalSlice'
+
 
 const SideBar = () => {
   const [loading, setLoading] = useState(false)
@@ -24,6 +25,7 @@ const SideBar = () => {
 
   useEffect(() => {
     if (!token) {
+
       return
     }
     const gettingPlaylists = async () => {
@@ -33,11 +35,12 @@ const SideBar = () => {
             'Authorization': `Bearer ${token}`
           }
         })
-        // setAllPlaylists(res.data.playlists)
         dispatch(setUserPlaylists(res.data.playlists))
         setLoading(false)
       } catch (error) {
-        console.log(error)
+        if (error === 'TokenExpiredError') {
+          setSessionExpiredModal(true)
+        }
         setLoading(false)
         setError(true)
       }

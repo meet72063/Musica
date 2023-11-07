@@ -7,7 +7,7 @@ const initialState = {
     isLoading:true,
     allSongs:[],
     error:false,
-    songsLoading:true,
+    songsLoading:false,
     allArtist:[],
     ArtistFetchError:false,
     artistLoading:true,
