@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react'
 import ArtistIcons from '../Home/ArtistIcons'
-import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../SharedComponents/Loading'
 import Error from '../SharedComponents/Error'
+import useFetchArtist from '../../hooks/useFetchArtist'
 
 
 const ArtistTitle = () => {
-    const { allArtist, ArtistFetchError, artistLoading } = useSelector((store) => store.currentTrack)
+    const { loading, error, allArtist } = useFetchArtist()
 
 
-    if (artistLoading) {
+    if (loading) {
         return <div className='flex justify-center items-center'>
             <Loading />
         </div>
 
     }
 
-    if (ArtistFetchError) {
+    if (error) {
         return <Error error='something went wrong' />
     }
 

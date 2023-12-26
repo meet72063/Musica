@@ -19,8 +19,8 @@ const AudioPlayer = () => {
   const [loop, setLoop] = useState(false)
 
 
-  const audioRef = useRef()
-  const progressRef = useRef()
+  const audioRef = useRef(null)
+  const progressRef = useRef(null)
 
   return (
     <div className='  w-[100%] bg-black z-20  align-text-bottom  fixed bottom-0 border-t-[0.2px] border-b-[0.2px]  border-slate-600 ' >

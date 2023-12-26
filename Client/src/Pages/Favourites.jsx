@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import SongCardList from '../Components/ArtistPlaylist/SongCardList'
 import { setCurrentTrack, setIsplaying } from '../Features/CurrentTrack'
-import { setPlayList, setNotShuffled, setShuffle } from '../Features/SongSlice'
+import { setPlayList } from '../Features/SongSlice'
 
 
 
@@ -15,8 +15,7 @@ const Favourites = () => {
     dispatch(setCurrentTrack(likedSongs[0]))
     dispatch(setIsplaying(true))
     dispatch(setPlayList(likedSongs))
-    dispatch(setNotShuffled(likedSongs))
-    dispatch(setShuffle(false))
+
   }
 
   return (

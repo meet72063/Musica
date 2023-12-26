@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { AddCircleOutlineSharp, CheckCircleOutlineSharp } from '@mui/icons-material'
 import { removeFromCreatePlaylist, addToCreatePlaylist } from "../../Features/SongSlice"
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 
 
 

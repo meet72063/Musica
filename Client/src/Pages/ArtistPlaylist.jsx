@@ -2,34 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import SongCardList from '../Components/ArtistPlaylist/SongCardList'
-import { setcurrentArtist, setCurrentTrack, setIsplaying } from '../Features/CurrentTrack'
-import { setNotShuffled, setPlayList, setShuffle } from '../Features/SongSlice'
+import { setCurrentTrack, setIsplaying } from '../Features/CurrentTrack'
+import { setPlayList } from '../Features/SongSlice'
 
 
 const Artist = () => {
   const { id } = useParams()
   const { allArtist } = useSelector((store) => store.currentTrack)
   const [artist] = allArtist?.filter((artist) => artist._id === id)
-
-
-
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(setcurrentArtist(artist))
-  }, [])
-
-
-
-
-
   const playAllHanlder = () => {
-
     dispatch(setCurrentTrack({ ...artist.albums[0] }))
     dispatch(setIsplaying(true))
     dispatch(setPlayList(artist.albums))
-    dispatch(setNotShuffled(artist.albums))
-    dispatch(setShuffle(false))
   }
 
   return (

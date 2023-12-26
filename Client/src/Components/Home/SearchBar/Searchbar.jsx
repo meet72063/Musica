@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLibrary, setCurrentTrack, setIsplaying } from '../../../Features/CurrentTrack'
-import { Close, MusicNote } from '@mui/icons-material'
+import { setCurrentTrack, setIsplaying } from '../../../Features/CurrentTrack'
+import { Close } from '@mui/icons-material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMusic } from '@fortawesome/free-solid-svg-icons'
 
@@ -10,38 +10,19 @@ import { faMusic } from '@fortawesome/free-solid-svg-icons'
 const Searchbar = () => {
   const [searchInput, setSearchInput] = useState('')
   const [searchResult, setSearchResult] = useState([])
-  const dispatch = useDispatch()
-  const { allSongs, songs, allArtist, catogories } = useSelector(state => state.currentTrack)
+  const { Library } = useSelector(state => state.currentTrack)
 
 
-  //Collecting all the songs 
-  let Library = [...allSongs]
-
-  allArtist.forEach((artist) => {
-    Library = [...Library, ...artist.albums]
-  })
-
-  catogories.forEach((catogry) => {
-    Library = [...Library, ...catogry.songs]
-  })
-
-  useEffect(() => {
-    dispatch(setLibrary(Library))
-  }, [])
-
+  //to close the searchInput result empty the searchInput
   const closeBtnHandler = () => {
     setSearchInput('')
   }
 
-
-
   const searchTrack = (search) => {
-    const firstLetter = search.slice(0, 1)
-    const restPart = search.slice(1)
-    const Search = firstLetter.toUpperCase() + restPart
-
+    //case insensitive search
+    const regex = new RegExp(search, "i")
     const searchResult = Library.filter((song) => {
-      return song.name.includes(Search)
+      return regex.test(song.name)
     })
     setSearchResult(searchResult)
   }
@@ -52,11 +33,6 @@ const Searchbar = () => {
       searchTrack(e.target.value)
     }
   }
-
-
-
-
-
 
   return (
     <div className='sm:ml-10 '>
@@ -70,15 +46,13 @@ const Searchbar = () => {
 
           <div className='flex justify-end pr-5 items-center p-3 cursor-pointer hover:text-red-600' onClick={closeBtnHandler}><Close /></div>
 
-          {/* song matched to the search */}
+          {/* search result*/}
 
           <div className='grid md:grid-cols-4 sm:grid-cols-4 grid-cols-2 gap-4  max-h-80 p-3 overflow-scroll '>
             {searchResult.length === 0 ? <span className='text-lg text-red-400 font-cursive ml-3'> No Result matching your search</span> : searchResult.map((song) => {
               return <Track key={song._id} track={song} />
             })}
           </div>
-
-
         </div>
       </div>}
 
@@ -93,13 +67,12 @@ export default Searchbar
 
 
 
-
+// search result Song JSX
 
 const Track = function ({ track }) {
   const dispatch = useDispatch()
   const handlePlay = () => {
     dispatch(setCurrentTrack(track))
-    dispatch(setIsplaying(true))
   }
 
   return (

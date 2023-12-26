@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import SongCard from './SongCard'
-import { useDispatch, useSelector } from 'react-redux'
-
 import Error from '../SharedComponents/Error'
 import Loading from '../SharedComponents/Loading'
+import useFetchAllSongs from '../../hooks/useFetchAllSongs'
 
 
 const SongsHorizontalList = ({ homepage }) => {
+  const { loading, error, allSongs } = useFetchAllSongs()
 
-  const { allSongs, songsLoading, error } = useSelector((store) => store.currentTrack)
-
-
-
-  if (songsLoading) {
+  if (loading) {
     return <Loading />
   }
 
@@ -20,7 +16,7 @@ const SongsHorizontalList = ({ homepage }) => {
     return <Error error='something went wrong' />
   }
 
-  const Songs = homepage ? allSongs?.slice(0, 6) : allSongs
+  const Songs = homepage ? allSongs.slice(0, 6) : allSongs
 
 
   return (
@@ -31,7 +27,7 @@ const SongsHorizontalList = ({ homepage }) => {
       </div>
       <div className=' rounded-lg grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 pt-1 xs:gap-5 md: '>
 
-        {Songs?.map((song, index) => {
+        {Songs.map((song, index) => {
 
 
           return <SongCard key={index} {...song} index={index} />

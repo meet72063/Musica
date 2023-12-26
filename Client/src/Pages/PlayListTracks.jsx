@@ -2,8 +2,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import SongCardList from '../Components/ArtistPlaylist/SongCardList'
-import { setcurrentArtist, setCurrentTrack, setIsplaying } from '../Features/CurrentTrack'
-import { setPlayList, setNotShuffled, setShuffle } from '../Features/SongSlice'
+import { setCurrentTrack, setIsplaying } from '../Features/CurrentTrack'
+import { setPlayList } from '../Features/SongSlice'
 
 
 
@@ -18,9 +18,6 @@ const PlayListTracks = () => {
     dispatch(setCurrentTrack(songs[0]))
     dispatch(setIsplaying(true))
     dispatch(setPlayList(songs))
-    dispatch(setNotShuffled(songs))
-    dispatch(setShuffle(false))
-
 
   }
 

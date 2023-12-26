@@ -1,89 +1,90 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
+// Initial state constant for reusability
 const initialState = {
-    currentplaying:null,
-    isPlaying:false,
-    isLoading:true,
-    allSongs:[],
-    error:false,
-    songsLoading:false,
-    allArtist:[],
-    ArtistFetchError:false,
-    artistLoading:true,
-    songs:[],
-    currentArtist:'',
-    catogories:[],
-    Library:[]
-}
+  currentplaying: null,
+  isPlaying: false,
+  allSongs: [],
+  allArtist: [],
+  songs: [],
+  catogories: [],
+  Library: [],
+};
 
+// Creating the Redux slice
+const currentTrack = createSlice({
+  name: "CurrentTrack",
+  initialState,
+  reducers: {
+    // Payload to play a song
+    setCurrentTrack: (state, { payload }) => {
+      // Set the current playing song and start playing
+      state.currentplaying = payload;
+      state.isPlaying = true;
+    },
 
+    // Play/pause song
+    setIsplaying: (state, { payload }) => {
+      // Set the play/pause state
+      state.isPlaying = payload;
+    },
 
- const currentTrack = createSlice({
-    name:'CurrentTrack',
-    initialState,
-    reducers:{
-      //payload to play song
-       setCurrentTrack:(state,{payload})=>{
-          state.currentplaying = payload
-       },
+    // Set all songs
+    setAllSongs: (state, { payload }) => {
+      // Store fetched all songs
+      state.allSongs = payload;
+      // Store songs in the library
+      state.Library = [...state.Library, ...payload];
+    },
 
-       //play/pause song
-       setIsplaying:(state,{payload})=>{
-         state.isPlaying=payload
-       },
-      setIsLoading:(state,{payload})=>{
-        state.isLoading = payload
-      },
-      GetAllSongs:(state,{payload})=>{
-        state.allSongs=payload
-      },
-      setError:(state,{payload})=>{
-        state.error=payload
-      },
-      setSongLoading:(state,{payload})=>{
-        state.songsLoading=payload
-      },
-      GetAllArtists:(state,{payload})=>{
-        state.allArtist=payload
-      },
-      setArtistFechError:(state,{payload})=>{
-        state.ArtistFetchError=payload
-      },
-      setArtistLoading:(state,{payload})=>{
-        state.artistLoading=payload
-      },
-      setartistSongs:(state,{payload})=>{
-        state.songs.push(payload)
-      },
-      setcurrentArtist:(state,{payload})=>{
-        state.currentArtist = payload
-      },
-      setCatogories:(state,{payload})=>{
-        state.catogories = payload
-      },
-      setLibrary:(state,{payload})=>{
-        state.Library = payload
-      }
-     
-    }
-    
-})
+    // Set song loading state
+    setSongLoading: (state, { payload }) => {
+      // Set the loading state for songs
+      state.songsLoading = payload;
+    },
 
-export const {setCurrentTrack,
+    // Set all artists
+    setAllArtists: (state, { payload }) => {
+      // Store fetched all artists
+      state.allArtist = payload;
+
+      // Store artists' albums in the library
+      let library = [...state.Library];
+      payload.forEach((artist) => {
+        library = [...library, ...artist.albums];
+      });
+      // Update the library
+      state.Library = library;
+    },
+
+    // Set artist songs
+    setartistSongs: (state, { payload }) => {
+      // Add artist songs to the songs array
+      state.songs.push(payload);
+    },
+
+    // Set categories
+    setCatogories: (state, { payload }) => {
+      // Store fetched categories
+      state.catogories = payload;
+
+      // Update library with songs from each category
+      let library = [...state.Library];
+      payload.forEach((category) => {
+        library = [...library, ...category.songs];
+      });
+      state.Library = library;
+    },
+  },
+});
+
+// Export actions and reducer
+export const {
+  setCurrentTrack,
   setIsplaying,
-  setIsLoading,
-  GetAllSongs,
-  setError,
-  setSongLoading,
-  GetAllArtists,
-  setArtistFechError,
-  setArtistLoading,
+  setAllSongs,
+  setAllArtists,
   setartistSongs,
-  setcurrentArtist,
   setCatogories,
-  setLibrary
-    }  = currentTrack.actions
-export default currentTrack.reducer
-
-
+} = currentTrack.actions;
+export default currentTrack.reducer;

@@ -10,6 +10,7 @@ import Error from '../../SharedComponents/Error'
 import axios from 'axios'
 import NewPlaylistCard from '../../Playlist/NewPlaylistCard'
 import { setSessionExpiredModal } from '../../../Features/modalSlice'
+import { getUsrPlaylist } from '../../../api/user'
 
 
 const SideBar = () => {
@@ -30,18 +31,12 @@ const SideBar = () => {
     }
     const gettingPlaylists = async () => {
       try {
-        const res = await axios.get(`https://musica-8uoh.onrender.com/getallplaylists`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        })
+        const res = await getUsrPlaylist(token)
         dispatch(setUserPlaylists(res.data.playlists))
-        setLoading(false)
       } catch (error) {
         if (error === 'TokenExpiredError') {
           setSessionExpiredModal(true)
         }
-        setLoading(false)
         setError(true)
       }
     }
@@ -88,8 +83,8 @@ const SideBar = () => {
 
         <div className='m-5'>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between text-sm gap-3'>
-            {userPlaylists.map((playlist, index) => {
-              return <PlaylistCard key={index} {...playlist} setRefresh={setRefresh} refresh={refresh} />
+            {userPlaylists.map((playlist) => {
+              return <PlaylistCard key={playlist._id} {...playlist} setRefresh={setRefresh} refresh={refresh} />
             })}
             <NewPlaylistCard fromModal="fromModal" />
 

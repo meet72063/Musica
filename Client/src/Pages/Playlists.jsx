@@ -6,11 +6,9 @@ import Loading from '../Components/SharedComponents/Loading'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserPlaylists } from '../Features/UserPlaylistSlice'
 import { HeadsetRounded, DeleteForever, CancelOutlined, Cancel } from '@mui/icons-material'
-
-import axios from 'axios'
 import DeletePlaylistModal from '../Modals/DeletePlaylistModal'
 import { setSessionExpiredModal } from '../Features/modalSlice'
-import { setToken, storeUserDetails } from '../Features/userDetailSlice'
+import { getUserPlaylists } from '../api/user'
 
 
 
@@ -32,25 +30,20 @@ const Playlists = () => {
   useEffect(() => {
     const gettingPlaylists = async () => {
       try {
-        const res = await axios.get(`https://musica-8uoh.onrender.com/getallplaylists`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        })
+        setLoading(true)
+        ///TODO :return all playlist later with
+        const res = await getUserPlaylists(token)
         setAllPlaylists(res.data.playlists)
         dispatch(setUserPlaylists(res.data.playlists))
-        setLoading(false)
       } catch (err) {
         const { error } = err.response.data
-        console.log(err)
-
         if (error === 'TokenExpiredError') {
           dispatch(setSessionExpiredModal(true))
           setLoading(false)
           return
         }
+      } finally {
         setLoading(false)
-        setError(true)
       }
     }
 
@@ -88,7 +81,7 @@ const Playlists = () => {
 
         </div>
         {allPlaylists.length === 0 ?
-          (<h2 className='text-lg text-zinc-400 font-thin'>You do'nt have any playlist yet </h2>) : (
+          (<h2 className='text-lg text-zinc-400 font-thin'>You don't have any playlist yet </h2>) : (
             <h2 className='text-lg text-zinc-400 font-thin'>Here are the playlists created by you <HeadsetRounded /> </h2>)
         }
       </div>

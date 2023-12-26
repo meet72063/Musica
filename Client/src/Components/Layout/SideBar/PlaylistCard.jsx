@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { LibraryAddCheck, LibraryAddOutlined } from '@mui/icons-material'
 import { useSelector } from 'react-redux'
-
-import axios from 'axios'
+import { addSongsToPlaylist } from '../../../api/user'
 
 
 const PlaylistCard = ({ name, _id, songs, refresh, setRefresh }) => {
@@ -33,28 +32,18 @@ const PlaylistCard = ({ name, _id, songs, refresh, setRefresh }) => {
             //adding song to playlist on database
             const addSongToPlaylist = async () => {
                 try {
-                    const res = await axios.patch(`https://musica-8uoh.onrender.com/addSongToPlaylist/${_id}`, songTobeAdded, {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    })
+                    const res = await addSongsToPlaylist(_id, songTobeAdded, token)
                     setRefresh(!refresh)
                 } catch (error) {
                     console.log(error)
                 }
             }
             addSongToPlaylist()
-
         }
         else {
             setShowConfromationModal(true)
         }
     }
-
-
-
-
-
     return (
         <div className='h-44 space-y-2 w-52 bg-transparent flex flex-col items-center justify-center relative'>
             {showConformationModal && <ConformationModel {...{ setShowConfromationModal, name }} />}
@@ -74,7 +63,7 @@ const PlaylistCard = ({ name, _id, songs, refresh, setRefresh }) => {
 export default PlaylistCard
 
 
-const ConformationModel = ({ setShowConfromationModal, name }) => {
+const ConformationModel = ({ setShowConfromationModal }) => {
     return (
         <div className='absolute top-0 w-[70%] z-10 bg-[rgba(255,255,255)] font-gorilla font-thin text-black border-black border-[0.1px] h-[96%] rounded-md  p-1'>
             <h2 className='text-base'>Song Already present in the playlist</h2>

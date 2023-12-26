@@ -11,16 +11,15 @@ import { setLoginModal, setSessionExpiredModal } from '../../Features/modalSlice
 import axios from 'axios'
 
 
-// const userDetails = getData()
+
 
 
 const Control = ({ isPlaying, audioRef, setProgressValue, progressRef, duration, currentplaying, error, loop, setLoop }) => {
   const { Library } = useSelector((store) => store.currentTrack)
-  const { playlist, shuffle, notShuffledTracks } = useSelector(store => store.songs)
+  const { playlist, shuffle } = useSelector(store => store.songs)
   const { token, userDetails } = useSelector((store) => store.userDetails)
   const [favourite, setFavourite] = useState(false)
   let index
-
 
   const dispatch = useDispatch()
   const playAnimationRef = useRef()
@@ -141,42 +140,48 @@ const Control = ({ isPlaying, audioRef, setProgressValue, progressRef, duration,
 
   }
 
-
+  // The 'repeat' function is responsible for updating the progress bar based on the
+  // current time of the playing audio. It utilizes requestAnimationFrame for optimal performance.
 
   const repeat = useCallback(() => {
-    const currentTime = audioRef.current?.currentTime
-    setProgressValue(currentTime)
-    progressRef.current.value = currentTime
+    // Retrieve the current time of the playing audio (elapsed seconds).
+    const currentTime = audioRef.current?.currentTime;
 
-    playAnimationRef.current = requestAnimationFrame(repeat)
+    // Set the progress value to match the elapsed duration of the song
+    // (convert it from a float to an integer in DisplayTrack component).
+    setProgressValue(currentTime);
 
-  }, [duration])
+    // Synchronize the progress bar with the song duration.
+    progressRef.current.value = currentTime;
+
+    // Hold the animationRef ID to cancel when the song pauses, triggering the repeat function again.
+    playAnimationRef.current = requestAnimationFrame(repeat);
+  }, [audioRef, setProgressValue, progressRef, duration]); //rebuilt this func when new song get added (duration change)
+  //pass this func to next useEffect to play/pause the next song on additon if current song was playing/paused or alternativly pass duration as a dependecy to next useffect
 
 
+
+
+  // The useEffect hook ensures that the 'repeat' function is appropriately executed
+  // based on changes in the 'isPlaying' state. If the audio is playing, the function
+  // continues to update the progress bar. When the audio is paused, the animation is canceled.
+  // play/pause the next added song if current song was playing/paused
   useEffect(() => {
     if (isPlaying) {
-      audioRef.current.play()
-      playAnimationRef.current = requestAnimationFrame(repeat)
-
+      audioRef.current.play();
+      playAnimationRef.current = requestAnimationFrame(repeat);
     } else {
-      audioRef.current.pause()
-      cancelAnimationFrame(playAnimationRef.current)
-
+      audioRef.current.pause();
+      cancelAnimationFrame(playAnimationRef.current);
     }
+  }, [isPlaying, repeat]);
 
-  }, [isPlaying, repeat])
 
 
-  //shuffle songs 
+
+  // shuffle/unshuffle
   const shuffleBtnHandler = () => {
-    if (!shuffle) {
-      dispatch(setShuffle(true))
-      dispatch(shuffleSongs())
-    }
-    else {
-      dispatch(setShuffle(false))
-      dispatch(setPlayList(notShuffledTracks))
-    }
+    dispatch(setShuffle())
   }
 
 
@@ -201,7 +206,7 @@ const Control = ({ isPlaying, audioRef, setProgressValue, progressRef, duration,
       <button onClick={loopHandler}>
         <LoopSharp className={`text-${loop ? 'green-700' : 'white'} ml-1`} />
       </button>
-      <button className={`text-xl ${shuffle && 'text-green-700'} `} onClick={shuffleBtnHandler}>
+      <button className={`text-xl ${shuffle && 'text-green-700'} `} >
         <FontAwesomeIcon icon={faShuffle} onClick={shuffleBtnHandler} />
       </button>
 
